@@ -16,12 +16,7 @@ return require('packer').startup(function(use)
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
     }
-
-    -- Harpoon
-    use {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        requires = { {"nvim-lua/plenary.nvim"} }
-    }
-
+    
+    -- One Dark theme
+    use 'navarasu/onedark.nvim'
 end)
