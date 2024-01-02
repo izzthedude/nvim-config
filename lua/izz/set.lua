@@ -1,12 +1,25 @@
--- Line numbers
-vim.cmd.set("relativenumber")
-vim.cmd.set("number")
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- Tabs/spaces/indents
-vim.cmd.set("tabstop=4")
-vim.cmd.set("shiftwidth=4")
-vim.cmd.set("softtabstop=4")
-vim.cmd.set("expandtab")
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.shiftwidth = 4
+vim.expandtab = true
+vim.opt.smartindent = true
 
--- Mouse
-vim.cmd.set("mouse=")
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
+
+vim.opt.scrolloff = 8
+
+vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = "88"
+
+vim.g.mapleader = " "
+
