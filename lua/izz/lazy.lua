@@ -16,6 +16,11 @@ vim.keymap.set("n", "<leader>L", require("lazy.view").show)
 require("lazy").setup({
     -- One Dark theme
     'navarasu/onedark.nvim',
+	-- Lualine
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
     -- Telescope
     {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
