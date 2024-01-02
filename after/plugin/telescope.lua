@@ -6,6 +6,7 @@ local fb_actions = require("telescope").extensions.file_browser.actions
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {}) 
 vim.keymap.set('n', '<leader>fb', ':Telescope file_browser grouped=true initial_mode=normal<CR>', {})
+vim.keymap.set('n', '<leader>fc', ':Telescope file_browser path=%:p:h grouped=true initial_mode=normal<CR>', {})
 
 telescope.setup {
     extensions = {

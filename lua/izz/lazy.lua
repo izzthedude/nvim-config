@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.keymap.set("n", "<leader>L", require("lazy.view").show)
+
 require("lazy").setup({
     -- One Dark theme
     'navarasu/onedark.nvim',

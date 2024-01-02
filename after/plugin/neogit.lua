@@ -1,2 +1,11 @@
-vim.keymap.set("n", ":G", ":Neogit", {})
+local neogit = require("neogit")
+
+vim.keymap.set(
+		"n",
+		"<leader>G",
+		function()
+				neogit.open( { kind = "auto"} )
+		end,
+		{}
+)
 
