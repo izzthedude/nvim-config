@@ -16,10 +16,20 @@ vim.keymap.set("n", "<leader>L", require("lazy.view").show)
 require("lazy").setup({
     -- One Dark theme
     'navarasu/onedark.nvim',
-	-- Lualine
+    -- Lualine
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
+    -- Which key
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {}
     },
     -- Telescope
     {
@@ -56,6 +66,8 @@ require("lazy").setup({
         'windwp/nvim-autopairs',
         event = "InsertEnter",
     },
+    -- autotag
+    'windwp/nvim-ts-autotag',
     -- lsp-zero
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -69,8 +81,11 @@ require("lazy").setup({
             -- Autocompletion
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
-            'L3MON4D3/LuaSnip'
+            {
+                "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
+            }
         }
-    }
+    },
 })
 

@@ -13,10 +13,15 @@ vim.opt.backup = false
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.showmatch = true
 
+vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 vim.opt.updatetime = 50
 
