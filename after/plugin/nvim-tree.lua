@@ -3,12 +3,12 @@ require("nvim-tree").setup({
         local api = require "nvim-tree.api"
 
         local function opts(desc)
-            return { 
+            return {
                 desc = "nvim-tree: " .. desc,
-                buffer = bufnr, 
-                noremap = true, 
-                silent = true, 
-                nowait = true 
+                buffer = bufnr,
+                noremap = true,
+                silent = true,
+                nowait = true
             }
         end
 
@@ -16,8 +16,20 @@ require("nvim-tree").setup({
         api.config.mappings.default_on_attach(bufnr)
 
         -- Custom
-        vim.keymap.set('n', '?',     api.tree.toggle_help, opts('Help'))
-        vim.keymap.set('n', '<leader>fb', api.tree.toggle, {})
+
+        -- Open file and close tree
+        vim.keymap.set('n', '<CR>', function ()
+            api.node.open.edit()
+            api.tree.close()
+        end, opts('Open: Close Tree'))
+        -- Open tree if visible, else toggle it
+        vim.keymap.set('n', '<leader>F',function ()
+            if api.tree.is_visible() then
+                api.tree.open()
+            else
+                api.tree.toggle()
+            end
+        end, {})
     end,
     view = {
         width = 40,
