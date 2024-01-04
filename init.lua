@@ -1,1 +1,2 @@
-require("izz")
+require("izz.core")
+require("izz.lazy")
