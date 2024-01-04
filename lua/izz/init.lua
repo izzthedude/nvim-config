@@ -1,4 +1,3 @@
-require("izz.set")
-require("izz.remap")
+require("izz.core")
 require("izz.lazy")
 

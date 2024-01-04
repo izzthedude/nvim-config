@@ -15,7 +15,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.showmatch = true
+vim.opt.showmatch = true
 
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
@@ -28,4 +28,3 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "88"
 
 vim.g.mapleader = " "
-
