@@ -5,6 +5,7 @@ return {
     dependencies = {
         {'hrsh7th/cmp-nvim-lsp'},
         {'williamboman/mason-lspconfig.nvim'},
+        {'antosha417/nvim-lsp-file-operations', config = true},
     },
     config = function ()
         local lsp_zero = require('lsp-zero')
@@ -15,8 +16,7 @@ return {
         local ts_builtin = require("telescope.builtin")
 
         lsp_zero.on_attach(function(client, bufnr)
-            local opts = { noremap = true, silent = true }
-            opts.buffer = bufnr
+            local opts = { buffer = bufnr, noremap = true, silent = true }
 
             lsp_zero.default_keymaps(opts)
 
