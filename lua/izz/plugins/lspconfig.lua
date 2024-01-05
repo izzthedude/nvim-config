@@ -78,6 +78,24 @@ return {
 			handlers = {
 				lsp_zero.default_setup,
 				lua_ls = create_handler(lspconfig.lua_ls, lsp_zero.nvim_lua_ls()),
+				-- Make pyright use the local venv first
+				pyright = function()
+					lspconfig.pyright.setup({
+						on_init = function(client)
+							local config = client.config
+							local python = python_path(config.root_dir)
+							config.settings.python.pythonPath = python
+						end,
+						settings = {
+							python = {
+								analysis = {
+									-- Use mypy for type checking
+									typeCheckingMode = "off",
+								},
+							},
+						},
+					})
+				end,
 			},
 		})
 	end,
