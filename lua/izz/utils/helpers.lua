@@ -22,3 +22,15 @@ function python_path(workspace)
 
 	return python
 end
+
+function lazy_unloaded_plugins()
+	-- Get unloaded plugins
+	local plugins = {}
+	for _, plugin in ipairs(require("lazy").plugins()) do
+		if not plugin._.loaded then
+			table.insert(plugins, plugin.name)
+		end
+	end
+	table.sort(plugins)
+	return plugins
+end

@@ -1,1 +1,1 @@
-require("izz.utils.paths")
+require("izz.utils.helpers")

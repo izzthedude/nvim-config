@@ -12,6 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.keymap.set("n", "<leader>L", require("lazy.view").show, { desc = "Open Lazy" })
+vim.keymap.set("n", "<leader>lp", function()
+	vim.ui.select(lazy_unloaded_plugins(), {
+		prompt = "Select plugin to load",
+	}, function(choice)
+		if choice then
+			vim.cmd(string.format("Lazy load %s", choice))
+			print(string.format("Successfully loaded %s", choice))
+		end
+	end)
+end, { desc = "Load plugin" })
 
 require("lazy").setup({
 	{ import = "izz.plugins" },
