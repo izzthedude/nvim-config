@@ -22,34 +22,35 @@ return {
 			opts.desc = "Show documentation of symbol under the cursor"
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-			opts.desc = "Show LSP definitions"
-			vim.keymap.set("n", "gd", ts_builtin.lsp_definitions, opts)
-
 			opts.desc = "Go to declaration"
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-			opts.desc = "Show LSP implementations"
-			vim.keymap.set("n", "gi", ts_builtin.lsp_implementations, opts)
+			-- Handled by trouble.nvim
+			-- opts.desc = "Show LSP definitions"
+			-- vim.keymap.set("n", "gd", ts_builtin.lsp_definitions, opts)
 
-			opts.desc = "Show LSP type definitions"
-			vim.keymap.set("n", "gt", ts_builtin.lsp_type_definitions, opts)
+			-- opts.desc = "Show LSP implementations"
+			-- vim.keymap.set("n", "gi", ts_builtin.lsp_implementations, opts)
+			--
+			-- opts.desc = "Show LSP type definitions"
+			-- vim.keymap.set("n", "gt", ts_builtin.lsp_type_definitions, opts)
+			--
+			-- opts.desc = "Show LSP references"
+			-- vim.keymap.set("n", "gr", ts_builtin.lsp_references, opts)
 
-			opts.desc = "Show LSP references"
-			vim.keymap.set("n", "gr", ts_builtin.lsp_references, opts)
+			-- opts.desc = "Show line diagnostics"
+			-- vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
+			--
+			-- opts.desc = "Show buffer diagnostics"
+			-- vim.keymap.set("n", "gL", function()
+			-- 	ts_builtin.diagnostics({ bufnr = 0 })
+			-- end, opts)
 
 			opts.desc = "Show LSP signature information"
 			vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, opts)
 
 			opts.desc = "See available code actions"
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-			opts.desc = "Show line diagnostics"
-			vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-
-			opts.desc = "Show buffer diagnostics"
-			vim.keymap.set("n", "gL", function()
-				ts_builtin.diagnostics({ bufnr = 0 })
-			end, opts)
 
 			opts.desc = "Go to previous diagnostic"
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)

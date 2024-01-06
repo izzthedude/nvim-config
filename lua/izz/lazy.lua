@@ -11,8 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local lazy = require("lazy")
+
 vim.keymap.set("n", "<leader>L", require("lazy.view").show, { desc = "Open Lazy" })
-vim.keymap.set("n", "<leader>lp", function()
+-- Prompt to load plugin
+vim.keymap.set("n", "<leader>ll", function()
 	vim.ui.select(lazy_unloaded_plugins(), {
 		prompt = "Select plugin to load",
 	}, function(choice)
@@ -22,7 +25,18 @@ vim.keymap.set("n", "<leader>lp", function()
 		end
 	end)
 end, { desc = "Load plugin" })
+-- Prompt to reload plugin
+vim.keymap.set("n", "<leader>lr", function()
+	vim.ui.select(lazy_plugins(), {
+		prompt = "Select plugin to reload",
+	}, function(choice)
+		if choice then
+			vim.cmd(string.format("Lazy reload %s", choice))
+			print(string.format("Successfully reloaded %s", choice))
+		end
+	end)
+end, { desc = "Reload plugin" })
 
-require("lazy").setup({
+lazy.setup({
 	{ import = "izz.plugins" },
 })
