@@ -12,12 +12,9 @@ return {
 
 		local lspconfig = require("lspconfig")
 		local ms_lspconfig = require("mason-lspconfig")
-		local ts_builtin = require("telescope.builtin")
 
 		lsp_zero.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr, noremap = true, silent = true }
-
-			lsp_zero.default_keymaps(opts)
 
 			opts.desc = "Show documentation of symbol under the cursor"
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -59,37 +56,38 @@ return {
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 		end)
 
-		lsp_zero.setup_servers({ "lua_ls", "pyright" })
+		-- Helper function for creating handlers for mason_lspconfig
+		local function create_handler(server, opts)
+			local function handler()
+				server.setup(opts)
+			end
+			return handler
+		end
 
 		-- Mason lspconfig
 		ms_lspconfig.setup({
 			ensure_installed = {
 				"lua_ls",
-				"pyright",
 			},
 			handlers = {
 				lsp_zero.default_setup,
-				lua_ls = function()
-					lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
-				end,
-				-- Make pyright use the local venv first
-				pyright = function()
-					lspconfig.pyright.setup({
-						on_init = function(client)
-							local config = client.config
-							local python = python_path(config.root_dir)
-							config.settings.python.pythonPath = python
-						end,
-						settings = {
-							python = {
-								analysis = {
-									-- Use mypy for type checking
-									typeCheckingMode = "off",
-								},
+				lua_ls = create_handler(lspconfig.lua_ls, lsp_zero.nvim_lua_ls()),
+				pyright = create_handler(lspconfig.pyright, {
+					-- Make pyright use the local venv first
+					on_init = function(client)
+						local config = client.config
+						local python = python_path(config.root_dir)
+						config.settings.python.pythonPath = python
+					end,
+					settings = {
+						python = {
+							analysis = {
+								-- Use mypy for type checking
+								typeCheckingMode = "off",
 							},
 						},
-					})
-				end,
+					},
+				}),
 			},
 		})
 	end,
