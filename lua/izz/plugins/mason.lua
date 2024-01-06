@@ -2,14 +2,16 @@ return {
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
-		config = function()
-			local mason = require("mason")
-
-			vim.keymap.set("n", "<leader>M", ":Mason<CR>")
-
-			mason.setup({
-				PATH = "append",
-			})
-		end,
+		keys = {
+			{
+				"<leader>M",
+				":Mason<CR>",
+				mode = "n",
+				desc = "Open Mason",
+			},
+		},
+		opts = {
+			PATH = "append",
+		},
 	},
 }

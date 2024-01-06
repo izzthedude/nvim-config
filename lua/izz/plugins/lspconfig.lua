@@ -61,14 +61,6 @@ return {
 
 		lsp_zero.setup_servers({ "lua_ls", "pyright" })
 
-		-- Helper function for creating handlers
-		local function create_handler(server, opts)
-			local function handler()
-				server.setup(opts)
-			end
-			return handler
-		end
-
 		-- Mason lspconfig
 		ms_lspconfig.setup({
 			ensure_installed = {
@@ -77,7 +69,9 @@ return {
 			},
 			handlers = {
 				lsp_zero.default_setup,
-				lua_ls = create_handler(lspconfig.lua_ls, lsp_zero.nvim_lua_ls()),
+				lua_ls = function()
+					lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+				end,
 				-- Make pyright use the local venv first
 				pyright = function()
 					lspconfig.pyright.setup({

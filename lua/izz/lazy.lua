@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.keymap.set("n", "<leader>L", require("lazy.view").show)
+vim.keymap.set("n", "<leader>L", require("lazy.view").show, { desc = "Open Lazy" })
 
 require("lazy").setup({
 	{ import = "izz.plugins" },
