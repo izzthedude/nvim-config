@@ -16,6 +16,8 @@ return {
 		lsp_zero.on_attach(function(client, bufnr)
 			local opts = { buffer = bufnr, noremap = true, silent = true }
 
+			lsp_zero.default_keymaps(opts)
+
 			opts.desc = "Show documentation of symbol under the cursor"
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
@@ -73,20 +75,10 @@ return {
 				lsp_zero.default_setup,
 				lua_ls = create_handler(lspconfig.lua_ls, lsp_zero.nvim_lua_ls()),
 				pyright = create_handler(lspconfig.pyright, {
-					-- Make pyright use the local venv first
+					-- Make pyright use local venv if available
 					on_init = function(client)
-						local config = client.config
-						local python = python_path(config.root_dir)
-						config.settings.python.pythonPath = python
+						client.config.settings.python.pythonPath = venv_bin("python")
 					end,
-					settings = {
-						python = {
-							analysis = {
-								-- Use mypy for type checking
-								typeCheckingMode = "off",
-							},
-						},
-					},
 				}),
 			},
 		})
